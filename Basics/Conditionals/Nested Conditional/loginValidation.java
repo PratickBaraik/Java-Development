@@ -6,30 +6,29 @@ public class loginValidation {
         String correctPassword = "Iam@Super123";
         int attempt = 0;
 
-        // declaring scanner object for taking input
-        Scanner takeInput = new Scanner(System.in);
+        try (Scanner takeInput = new Scanner(System.in)) {
+            while (attempt < 3) {
+                System.out.print("Enter the username: ");
+                String userName = takeInput.nextLine();
 
-        while (attempt < 3) {
-            System.out.print("Enter the username: ");
-            String userName = takeInput.nextLine();
+                System.out.print("Enter the password: ");
+                String password = takeInput.nextLine();
 
-            System.out.print("Enter the password: ");
-            String password = takeInput.nextLine();
-
-            if (userName.equals(correctUsername)) {
-                if (password.equals(correctPassword)) {
-                    System.out.println("Login successful!");
-                    takeInput.close();
-                    return;
+                if (userName.equals(correctUsername)) {
+                    if (password.equals(correctPassword)) {
+                        System.out.println("Login successful!");
+                        return;
+                    } else {
+                        System.out.println("Incorrect password. Please try again.");
+                    }
                 } else {
-                    System.out.println("Incorrect password. Please try again.");
+                    System.out.println("Username not found. Please try again.");
                 }
-            } else {
-                System.out.println("Username not found. Please try again.");
+                attempt++;
             }
-            attempt++;
-        }
 
-        System.out.println("Too many failed attempts. Access denied.");
+            System.out.println("Too many failed attempts. Access denied.");
+            takeInput.close();
+        }
     }
 }
