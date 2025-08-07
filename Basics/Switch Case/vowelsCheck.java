@@ -15,6 +15,7 @@ public class vowelsCheck {
             case 'o':
             case 'u':
                 System.out.println("It's a vowel.");
+                break;
             default:
                 System.out.println("It's a consonant.");
         }
